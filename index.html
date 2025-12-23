@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Happy Birthday, Kaixin</title>
+
+    <style>
+        :root {
+            --bg1: #ffe2f0;
+            --bg2: #f8f0ff;
+            --bg3: #ffe9d2;
+            --card: rgba(255, 255, 255, 0.72);
+            --card2: rgba(255, 255, 255, 0.55);
+            --text: #2a2a2a;
+            --muted: #666;
+            --shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+            --radius: 22px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+                "Microsoft YaHei", system-ui, sans-serif;
+            background: radial-gradient(circle at 0% 0%, var(--bg1), var(--bg2), var(--bg3));
+            background-size: 200% 200%;
+            animation: bgMove 16s linear infinite alternate;
+            overflow-x: hidden;
+        }
+
+        @keyframes bgMove {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            50% {
+                background-position: 50% 60%;
+            }
+
+            100% {
+                background-position: 100% 10%;
+            }
+        }
+
+        .glow-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.35), transparent 40%),
+                radial-gradient(circle at 80% 25%, rgba(255, 255, 255, 0.25), transparent 45%),
+                radial-gradient(circle at 55% 80%, rgba(255, 255, 255, 0.22), transparent 42%);
+            mix-blend-mode: soft-light;
+            filter: blur(0.2px);
+            opacity: 0.9;
+        }
+
+        .wrap {
+            width: min(960px, 92vw);
+            margin: 34px auto 70px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero {
+            border-radius: var(--radius);
+            padding: 28px 22px 20px;
+            background: linear-gradient(135deg, var(--card), var(--card2));
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: -60px -80px auto auto;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(255, 77, 141, 0.30), transparent 60%);
+            transform: rotate(14deg);
+            filter: blur(2px);
+        }
+
+        .title {
+            margin: 0;
+            font-weight: 800;
+            font-size: clamp(30px, 5vw, 48px);
+            letter-spacing: 0.5px;
+            text-align: center;
+            animation: titleGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 0 0 0px rgba(255, 255, 255, 0.4);
+                transform: scale(1);
+            }
+
+            50% {
+                text-shadow: 0 0 18px rgba(255, 255, 255, 0.95);
+                transform: scale(1.03);
+            }
+
+            100% {
+                text-shadow: 0 0 0px rgba(255, 255, 255, 0.4);
+                transform: scale(1);
+            }
+        }
+
+        .subtitle {
+            margin: 10px 0 0;
+            text-align: center;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .chips {
+            margin-top: 16px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .chip {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            font-size: 13px;
+            color: rgba(0, 0, 0, 0.72);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.07);
+        }
+
+        /* 小图标（用于 chips） */
+        .mini-icon {
+            display: inline-grid;
+            place-items: center;
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+            vertical-align: -2px;
+        }
+
+        .mini-icon svg {
+            width: 16px;
+            height: 16px;
+            display: block;
+        }
+
+        /* 卡片 icon 里的香水瓶（替换💄用） */
+        .icon-perfume svg {
+            width: 18px;
+            height: 18px;
+            display: block;
+        }
+
+
+        .countdown {
+            margin-top: 12px;
+            text-align: center;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.75);
+        }
+
+        .section {
+            margin-top: 18px;
+            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            padding: 18px;
+        }
+
+        .section h2 {
+            margin: 0 0 12px;
+            font-size: 18px;
+            letter-spacing: 0.3px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        @media (max-width: 720px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            border-radius: 18px;
+            padding: 14px 14px 12px;
+            background: rgba(255, 255, 255, 0.70);
+            border: 1px solid rgba(255, 255, 255, 0.75);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+            transform: translateY(10px);
+            opacity: 0;
+            transition: transform 700ms ease, opacity 700ms ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: auto -40px -40px auto;
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle, rgba(111, 108, 255, 0.18), transparent 60%);
+            transform: rotate(12deg);
+            z-index: 0;
+        }
+
+        .card.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .card .top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .icon {
+            width: 34px;
+            height: 34px;
+            display: grid;
+            place-items: center;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 18px rgba(0, 0, 0, 0.06);
+            font-size: 18px;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 15px;
+        }
+
+        /* ✅ 图片在左，文字在右 */
+        .card-body {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            position: relative;
+            z-index: 2;
+            /* 防止被 card::before 盖住 */
+        }
+
+        .card-photo {
+            width: 42%;
+            min-width: 150px;
+            aspect-ratio: 4 / 3;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.55);
+        }
+
+        .card-photo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transform: scale(1.02);
+            transition: transform 600ms ease;
+        }
+
+        .card:hover .card-photo img {
+            transform: scale(1.07);
+        }
+
+        .card-text {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .card-text p {
+            margin: 0;
+            color: rgba(0, 0, 0, 0.72);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* 手机端：上下排列（先图后文） */
+        @media (max-width: 720px) {
+            .card-body {
+                flex-direction: column;
+            }
+
+            .card-photo {
+                width: 100%;
+                min-width: 0;
+            }
+        }
+
+        .letter {
+            line-height: 1.9;
+            font-size: 15px;
+            color: rgba(0, 0, 0, 0.78);
+            white-space: pre-line;
+        }
+
+        .sign {
+            margin-top: 12px;
+            color: rgba(0, 0, 0, 0.70);
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .footer {
+            margin-top: 16px;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.55);
+            font-size: 12px;
+        }
+
+        /* 漂浮爱心 */
+        .heart {
+            position: fixed;
+            bottom: -40px;
+            z-index: 1;
+            pointer-events: none;
+            user-select: none;
+            color: rgba(255, 77, 141, 0.72);
+            animation: floatUp 8s linear forwards;
+            filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.08));
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) scale(1) rotate(0deg);
+                opacity: 0;
+            }
+
+            12% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-120vh) scale(1.5) rotate(16deg);
+                opacity: 0;
+            }
+        }
+
+        .btns {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        }
+
+        button {
+            border: 0;
+            border-radius: 999px;
+            padding: 10px 14px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.08);
+            color: rgba(0, 0, 0, 0.78);
+            font-size: 14px;
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="glow-layer"></div>
+
+    <div class="wrap">
+        <header class="hero">
+            <h1 class="title">生日快乐, 凯鑫 🎂</h1>
+            <p class="subtitle">
+                我想把我记忆犹新的一些画面，放进这个小小的页面里。<br />
+                想让你在打开的时候，会有一点点惊喜。
+            </p>
+
+            <div class="chips">
+                <span class="chip">🩰 白蛇传的心动</span>
+                <span class="chip">🎠 迪士尼的那天</span>
+                <span class="chip">💄 万胜围那顿泰餐</span>
+                <span class="chip">🌊 惠州的海和无边泳池</span>
+                <span class="chip">
+                    <span class="mini-icon">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M9 3.5c0-.55.45-1 1-1h4c.55 0 1 .45 1 1v2H9v-2Z" fill="rgba(180,140,60,0.95)" />
+                            <path
+                                d="M8.5 5.5h7c.55 0 1 .45 1 1v1.2c0 .44-.29.83-.72.96l-1.28.38H9.5l-1.28-.38A1 1 0 0 1 7.5 7.7V6.5c0-.55.45-1 1-1Z"
+                                fill="rgba(210,170,80,0.95)" />
+                            <path
+                                d="M8.2 9.4c.12-.6.65-1.04 1.26-1.04h5.08c.6 0 1.14.44 1.26 1.04l1.1 5.7c.22 1.15-.66 2.2-1.83 2.2H8.93c-1.17 0-2.05-1.05-1.83-2.2l1.1-5.7Z"
+                                fill="rgba(255,255,255,0.75)" stroke="rgba(255,255,255,0.75)" />
+                            <path
+                                d="M9.2 14.1c.07-.4.42-.7.83-.7h3.94c.41 0 .76.29.83.7l.55 2.9c.1.54-.31 1.04-.86 1.04H9.51c-.55 0-.96-.5-.86-1.04l.55-2.9Z"
+                                fill="rgba(255,77,141,0.55)" />
+                            <path d="M10.2 9.6c.4-.2.86-.3 1.8-.3" stroke="rgba(255,255,255,0.85)" stroke-width="1.2"
+                                stroke-linecap="round" />
+                        </svg>
+                    </span>
+                    迪奥小姐的欢喜
+                </span>
+            </div>
+
+            <div class="countdown" id="countdown">正在加载倒计时…</div>
+
+            <div class="btns">
+                <button id="btnHearts" type="button">来点爱心</button>
+                <button id="btnScroll" type="button">去看回忆</button>
+            </div>
+        </header>
+
+        <section class="section" id="memories">
+            <h2>我清晰记得的几个瞬间</h2>
+
+            <div class="grid">
+                <!-- 1 -->
+                <div class="card reveal">
+                    <div class="top">
+                        <div class="icon">🏰</div>
+                        <h3>城堡前，白雪公主刚好路过</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-photo">
+                            <img src="images/disney_castle2.jpg" alt="迪士尼城堡前的回忆" loading="lazy">
+                        </div>
+                        <div class="card-text">
+                            <p>
+                                香港迪士尼城堡前我给你拍照的时候，白雪公主刚好经过，还跟你打招呼。
+                                那一下很神奇，我觉得你就是人群中那个特别亮眼的存在，有时候我甚至有点嫉妒哈哈。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 -->
+                <div class="card reveal">
+                    <div class="top">
+                        <div class="icon">❄️</div>
+                        <h3>冰雪奇缘那边的喷泉</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-photo">
+                            <img src="images/frozen_fountain.jpg" alt="喷泉边的瞬间" loading="lazy">
+                        </div>
+                        <div class="card-text">
+                            <p>
+                                你坐在那里的样子特别美，黑色那套穿搭很绝。
+                                微风吹起你的裙摆，我觉得你好像要长出翅膀飞起来，成为动画里的仙子一样，好美哒。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="card reveal">
+                    <div class="top">
+                        <div class="icon">🩰</div>
+                        <h3>白蛇传的芭蕾舞剧</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-photo">
+                            <img src="images/white_snake.jpg" alt="白蛇传的舞台记忆" loading="lazy">
+                        </div>
+                        <div class="card-text">
+                            <p>
+                                我们一起看的那场《白蛇传》，我觉得我接触到了世界上的美好存在。
+                                回去的路上我们开始了解对方，你还在我的手上亲了一口，真的有种“心在蹦蹦跳”的感觉。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 -->
+                <div class="card reveal">
+                    <div class="top">
+                        <div class="icon">💄</div>
+                        <h3>万胜围，泰餐和香奈儿口红</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-photo">
+                            <img src="images/thaifood.jpg" alt="万胜围那顿泰餐" loading="lazy">
+                        </div>
+                        <div class="card-text">
+                            <p>
+                                那天晚餐后，我送你口红，你看到我写给你的卡片，感动的哭了。
+                                那一刻，我也特别感动，因为我感觉自己的心意有被你看到，得到了反馈的感觉。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 -->
+                <div class="card reveal">
+                    <div class="top">
+                        <div class="icon">🌊</div>
+                        <h3>惠州，31层的无边泳池</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-photo">
+                            <img src="images/huizhou_pool2.jpg" alt="惠州无边泳池" loading="lazy">
+                        </div>
+                        <div class="card-text">
+                            <p>
+                                之后我们还是一起去旅行，你在无边泳池和那套亮色泳衣很搭，那一刻我觉得你是清冷热烈的。
+                                你还在海边迎着海浪，我觉得那里的海对你来说有点小，你还是适合夏威夷、马尔代夫的海。
+                                我相信我们有一天可以一起去 Hawaii。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6 -->
+                <div class="card reveal">
+                    <div class="top">
+                        <div class="icon icon-perfume">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M9 3.5c0-.55.45-1 1-1h4c.55 0 1 .45 1 1v2H9v-2Z"
+                                    fill="rgba(180,140,60,0.95)" />
+                                <path
+                                    d="M8.5 5.5h7c.55 0 1 .45 1 1v1.2c0 .44-.29.83-.72.96l-1.28.38H9.5l-1.28-.38A1 1 0 0 1 7.5 7.7V6.5c0-.55.45-1 1-1Z"
+                                    fill="rgba(210,170,80,0.95)" />
+                                <path
+                                    d="M8.2 9.4c.12-.6.65-1.04 1.26-1.04h5.08c.6 0 1.14.44 1.26 1.04l1.1 5.7c.22 1.15-.66 2.2-1.83 2.2H8.93c-1.17 0-2.05-1.05-1.83-2.2l1.1-5.7Z"
+                                    fill="rgba(255,255,255,0.75)" stroke="rgba(255,255,255,0.75)" />
+                                <path
+                                    d="M9.2 14.1c.07-.4.42-.7.83-.7h3.94c.41 0 .76.29.83.7l.55 2.9c.1.54-.31 1.04-.86 1.04H9.51c-.55 0-.96-.5-.86-1.04l.55-2.9Z"
+                                    fill="rgba(255,77,141,0.55)" />
+                                <path d="M10.2 9.6c.4-.2.86-.3 1.8-.3" stroke="rgba(255,255,255,0.85)"
+                                    stroke-width="1.2" stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <h3>太古汇，迪奥小姐</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-photo">
+                            <img src="images/dior5.jpg" alt="太古汇的迪奥小姐" loading="lazy">
+                        </div>
+                        <div class="card-text">
+                            <p>
+                                那天，和你到柜台买了迪奥小姐，我给你拍照，你开心的像个炫耀礼物的小公主。
+                                那一刻，如果可以的话，我想把整个太古汇买下来送你。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7（纯文字祝福也可以不放图；你要放图我也能给你加） 
+        <div class="card reveal">
+          <div class="top">
+            <div class="icon">🕯️</div>
+            <h3>我想给你的祝福</h3>
+          </div>
+          <div class="card-body">
+            <div class="card-photo">
+              <img src="images/bless.jpg" alt="祝福" loading="lazy" onerror="this.parentElement.style.display='none'">
+            </div>
+            <div class="card-text">
+              <p>
+                希望你一直有勇气，也一直有好运气。<br/>
+                希望你自信，就像你的 role model 张元英一样。<br/>
+                希望你走的每一步，都越来越靠近你想要的生活。
+              </p>
+            </div>
+          </div>
+        </div>  -->
+
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>想跟你说的话</h2>
+            <div class="letter" id="letter">
+                凯馨，生日快乐。
+                我把一些我很喜欢的画面放进这个页面里，像把星星装进口袋。
+                你最近面试论文很忙，就当它是一个“你有空再拆的礼物”，不用急，也不用特地回我。
+                12.31那晚我很开心，也很庆幸能和你一起跨过这一年。
+                祝你顺顺利利，天天开心。抱一下。
+            </div>
+
+            <div class="sign">From：群太（认真版）</div>
+        </section>
+
+        <div class="footer">
+            P.S. 如果你看到这里，说明你已经打开了我给你的“小网页”。那就，抱一下。
+        </div>
+    </div>
+
+    <script>
+        /***********************
+         * 0) 爱心系统（先定义，后面倒计时会用到）
+         ***********************/
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.textContent = "❤";
+            heart.style.left = (Math.random() * 100) + "vw";
+            heart.style.fontSize = (14 + Math.random() * 14) + "px";
+            heart.style.opacity = (0.45 + Math.random() * 0.35).toFixed(2);
+            heart.style.animationDuration = (6.5 + Math.random() * 3.5).toFixed(2) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 9000);
+        }
+
+        let heartTimer = null;
+        const baseRate = 1200;   // 默认少量飘：数值越大越少（想更少可改 1500）
+        const boostRate = 220;   // 加速飘（更密）
+        const boostMsClick = 3800; // 点击按钮加速持续
+        const boostMsBirthday = 5000; // 生日当天加速持续（5秒）
+        let boostTimeout = null;
+
+        function startBaseHearts() {
+            if (heartTimer) return;
+            heartTimer = setInterval(createHeart, baseRate);
+        }
+
+        function setHeartRate(ms) {
+            if (!heartTimer) return;
+            clearInterval(heartTimer);
+            heartTimer = setInterval(createHeart, ms);
+        }
+
+        function burstHearts(count = 22, interval = 70) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(createHeart, i * interval);
+            }
+        }
+
+        function triggerHeartsBoost(durationMs) {
+            setHeartRate(boostRate);
+            if (boostTimeout) clearTimeout(boostTimeout);
+            boostTimeout = setTimeout(() => setHeartRate(baseRate), durationMs);
+        }
+
+        // 页面进来：先来几颗开场 + 持续少量飘（一直不停）
+        for (let i = 0; i < 6; i++) setTimeout(createHeart, i * 180);
+        startBaseHearts();
+
+        /***********************
+         * 1) 倒计时（1/10当天：显示祝福 + 停止计时；过了1/10：自动倒到下一年）
+         ***********************/
+        function pad(n) { return String(n).padStart(2, '0'); }
+
+        let countdownTimer = null;
+        let birthdayHeartsTriggered = false;
+
+        function isJan10(d) {
+            return d.getMonth() === 0 && d.getDate() === 10; // 0 = January
+        }
+
+        function getNextBirthday(now) {
+            // 如果今天就是1/10：返回今年1/10（用来显示年份；实际会走生日分支）
+            if (isJan10(now)) return new Date(now.getFullYear(), 0, 10, 0, 0, 0);
+
+            // 否则返回最近的下一个1/10
+            let y = now.getFullYear();
+            let target = new Date(y, 0, 10, 0, 0, 0);
+            if (now > target) target = new Date(y + 1, 0, 10, 0, 0, 0);
+            return target;
+        }
+
+        // ===== 测试开关：改成你想模拟的日期，测完再设回 null =====
+        const DEBUG_DATE = null; // 例如：new Date("2026-01-10T12:00:00") 或 new Date("2026-01-11T09:00:00")
+
+        function getNow() {
+            return DEBUG_DATE ? new Date(DEBUG_DATE) : new Date();
+        }
+
+        function updateCountdown() {
+            const el = document.getElementById("countdown");
+            if (!el) return;
+
+            const now = getNow();
+
+            // ✅ 1/10当天：不管几点打开都显示生日祝福 + 停止计时 + 触发彩蛋
+            if (isJan10(now)) {
+                el.textContent = "🎉 今天就是你的生日啦。生日快乐！";
+
+                if (!birthdayHeartsTriggered) {
+                    birthdayHeartsTriggered = true;
+                    // 彩蛋：先爆一波，再加速 5 秒
+                    burstHearts(30, 55);
+                    triggerHeartsBoost(boostMsBirthday);
+                }
+
+                if (countdownTimer) clearInterval(countdownTimer);
+                countdownTimer = null;
+                return;
+            }
+
+            const target = getNextBirthday(now);
+            const diff = target - now;
+
+            const totalSec = Math.max(0, Math.floor(diff / 1000));
+            const d = Math.floor(totalSec / (3600 * 24));
+            const h = Math.floor((totalSec % (3600 * 24)) / 3600);
+            const m = Math.floor((totalSec % 3600) / 60);
+            const s = totalSec % 60;
+
+            const yy = target.getFullYear();
+            el.textContent = `距离 ${yy}.01.10 还有：${d} 天 ${pad(h)}:${pad(m)}:${pad(s)} ✨`;
+        }
+
+        updateCountdown();
+        countdownTimer = setInterval(updateCountdown, 1000);
+
+        /***********************
+         * 2) 按钮交互
+         ***********************/
+        document.getElementById("btnHearts")?.addEventListener("click", () => {
+            burstHearts(22, 70);
+            triggerHeartsBoost(boostMsClick);
+        });
+
+        document.getElementById("btnScroll")?.addEventListener("click", () => {
+            document.getElementById("memories")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+
+        /***********************
+         * 3) 卡片滚动出现
+         ***********************/
+        const cards = Array.from(document.querySelectorAll(".reveal"));
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) e.target.classList.add("show");
+            });
+        }, { threshold: 0.15 });
+        cards.forEach(c => io.observe(c));
+    </script>
+
+</body>
+
+</html>
