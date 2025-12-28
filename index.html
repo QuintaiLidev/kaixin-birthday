@@ -49,17 +49,9 @@
     }
 
     @keyframes bgMove {
-      0% {
-        background-position: 0% 0%;
-      }
-
-      50% {
-        background-position: 50% 60%;
-      }
-
-      100% {
-        background-position: 100% 10%;
-      }
+      0% { background-position: 0% 0%; }
+      50% { background-position: 50% 60%; }
+      100% { background-position: 100% 10%; }
     }
 
     .glow-layer {
@@ -114,20 +106,9 @@
     }
 
     @keyframes titleGlow {
-      0% {
-        text-shadow: 0 0 0px rgba(255, 255, 255, 0.4);
-        transform: scale(1);
-      }
-
-      50% {
-        text-shadow: 0 0 18px rgba(255, 255, 255, 0.95);
-        transform: scale(1.03);
-      }
-
-      100% {
-        text-shadow: 0 0 0px rgba(255, 255, 255, 0.4);
-        transform: scale(1);
-      }
+      0% { text-shadow: 0 0 0px rgba(255, 255, 255, 0.4); transform: scale(1); }
+      50% { text-shadow: 0 0 18px rgba(255, 255, 255, 0.95); transform: scale(1.03); }
+      100% { text-shadow: 0 0 0px rgba(255, 255, 255, 0.4); transform: scale(1); }
     }
 
     .subtitle {
@@ -156,7 +137,6 @@
       box-shadow: 0 10px 22px rgba(0, 0, 0, 0.07);
     }
 
-    /* 小图标（用于 chips） */
     .mini-icon {
       display: inline-grid;
       place-items: center;
@@ -172,7 +152,6 @@
       display: block;
     }
 
-    /* 卡片 icon 里的香水瓶（替换💄用） */
     .icon-perfume svg {
       width: 18px;
       height: 18px;
@@ -209,9 +188,7 @@
     }
 
     @media (max-width: 720px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
+      .grid { grid-template-columns: 1fr; }
     }
 
     .card {
@@ -264,12 +241,8 @@
       font-size: 18px;
     }
 
-    .card h3 {
-      margin: 0;
-      font-size: 15px;
-    }
+    .card h3 { margin: 0; font-size: 15px; }
 
-    /* ✅ 图片在左，文字在右 */
     .card-body {
       display: flex;
       gap: 12px;
@@ -303,15 +276,9 @@
       animation: shimmer 1.2s infinite;
     }
 
-    @keyframes shimmer {
-      to {
-        transform: translateX(100%);
-      }
-    }
+    @keyframes shimmer { to { transform: translateX(100%); } }
 
-    .card-photo.is-loaded::after {
-      display: none;
-    }
+    .card-photo.is-loaded::after { display: none; }
 
     .card-photo img {
       width: 100%;
@@ -323,19 +290,10 @@
       opacity: 0;
     }
 
-    .card-photo.is-loaded img {
-      opacity: 1;
-    }
+    .card-photo.is-loaded img { opacity: 1; }
+    .card:hover .card-photo img { transform: scale(1.07); }
 
-    .card:hover .card-photo img {
-      transform: scale(1.07);
-    }
-
-    .card-text {
-      flex: 1;
-      min-width: 0;
-    }
-
+    .card-text { flex: 1; min-width: 0; }
     .card-text p {
       margin: 0;
       color: rgba(0, 0, 0, 0.72);
@@ -343,16 +301,9 @@
       font-size: 14px;
     }
 
-    /* 手机端：上下排列（先图后文） */
     @media (max-width: 720px) {
-      .card-body {
-        flex-direction: column;
-      }
-
-      .card-photo {
-        width: 100%;
-        min-width: 0;
-      }
+      .card-body { flex-direction: column; }
+      .card-photo { width: 100%; min-width: 0; }
     }
 
     .letter {
@@ -389,19 +340,9 @@
     }
 
     @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(1) rotate(0deg);
-        opacity: 0;
-      }
-
-      12% {
-        opacity: 1;
-      }
-
-      100% {
-        transform: translateY(-120vh) scale(1.5) rotate(16deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 0; }
+      12% { opacity: 1; }
+      100% { transform: translateY(-120vh) scale(1.5) rotate(16deg); opacity: 0; }
     }
 
     .btns {
@@ -424,21 +365,13 @@
       font-size: 14px;
     }
 
-    button:active {
-      transform: translateY(1px);
-    }
+    button:active { transform: translateY(1px); }
 
     /* =========================
-       ✅ 推荐版加载策略：
-       - 只等“首屏关键图片”加载完就展示页面
-       - 其余图片 lazy + skeleton
+       ✅ Loader：只等关键图
        ========================= */
+    html.is-loading body { overflow: hidden; }
 
-    html.is-loading body {
-      overflow: hidden;
-    }
-
-    /* 页面容器：加载时先隐藏，加载完成淡入 */
     #app {
       opacity: 0;
       transform: translateY(8px);
@@ -450,7 +383,6 @@
       transform: translateY(0);
     }
 
-    /* 全屏加载遮罩 */
     .loader-overlay {
       position: fixed;
       inset: 0;
@@ -490,11 +422,7 @@
       animation: spin 1s linear infinite;
     }
 
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
     .loader-text {
       font-size: 14px;
@@ -506,6 +434,34 @@
       font-size: 12px;
       color: rgba(0, 0, 0, 0.55);
     }
+
+    /* =========================
+       ✅ 新增：失败提示/点我重试（不影响PC）
+       ========================= */
+    .card-photo.is-failed::after { display: none; }
+
+    .img-retry {
+      position: absolute;
+      inset: 0;
+      display: none;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.55);
+      backdrop-filter: blur(6px);
+    }
+
+    .card-photo.is-failed .img-retry {
+      display: grid;
+    }
+
+    .img-retry button {
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.92);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+      font-size: 13px;
+      color: rgba(0, 0, 0, 0.78);
+    }
   </style>
 
   <base href="https://quintailidev.github.io/kaixin-birthday/">
@@ -514,7 +470,6 @@
 <body>
   <div class="glow-layer"></div>
 
-  <!-- ✅ 加载中遮罩（只等关键图，不等全部图） -->
   <div id="loaderOverlay" class="loader-overlay" aria-live="polite">
     <div class="loader-card">
       <div class="spinner"></div>
@@ -523,7 +478,6 @@
     </div>
   </div>
 
-  <!-- ✅ 页面主体 -->
   <div class="wrap" id="app">
     <header class="hero">
       <h1 class="title">生日快乐, 凯鑫 🎂</h1>
@@ -579,6 +533,7 @@
           </div>
           <div class="card-body">
             <div class="card-photo">
+              <div class="img-retry"><button type="button">图片没加载出来，点我重试</button></div>
               <img
                 src="https://quintailidev.github.io/kaixin-birthday/images/disney_castle1.jpg?v=3"
                 alt="迪士尼城堡前的回忆"
@@ -605,6 +560,7 @@
           </div>
           <div class="card-body">
             <div class="card-photo">
+              <div class="img-retry"><button type="button">图片没加载出来，点我重试</button></div>
               <img
                 src="https://quintailidev.github.io/kaixin-birthday/images/frozen_fountain.jpg?v=3"
                 alt="喷泉边的瞬间"
@@ -631,6 +587,7 @@
           </div>
           <div class="card-body">
             <div class="card-photo">
+              <div class="img-retry"><button type="button">图片没加载出来，点我重试</button></div>
               <img
                 src="https://quintailidev.github.io/kaixin-birthday/images/white_snake.jpg?v=3"
                 alt="白蛇传的舞台记忆"
@@ -655,6 +612,7 @@
           </div>
           <div class="card-body">
             <div class="card-photo">
+              <div class="img-retry"><button type="button">图片没加载出来，点我重试</button></div>
               <img
                 src="https://quintailidev.github.io/kaixin-birthday/images/thaifood.jpg?v=3"
                 alt="万胜围那顿泰餐"
@@ -664,8 +622,8 @@
             </div>
             <div class="card-text">
               <p>
-                那天泰餐的味道我记不太清了，但我送你口红，你看到卡片后哭了的那一刻，我记的很清楚。
-                我也特别感动，因为感到自己的心意有被你看到，得到了反馈的感觉。
+                那天泰餐的味道我已经记不太清了，但我送你口红，你看到卡片后哭了的那一刻，我记的很清楚。
+                我也特别感动，因为感到自己的心意有被你收到，得到了反馈的感觉。
               </p>
             </div>
           </div>
@@ -679,6 +637,7 @@
           </div>
           <div class="card-body">
             <div class="card-photo">
+              <div class="img-retry"><button type="button">图片没加载出来，点我重试</button></div>
               <img
                 src="https://quintailidev.github.io/kaixin-birthday/images/huizhou_pool2.jpg?v=3"
                 alt="惠州无边泳池"
@@ -719,6 +678,7 @@
           </div>
           <div class="card-body">
             <div class="card-photo">
+              <div class="img-retry"><button type="button">图片没加载出来，点我重试</button></div>
               <img
                 src="https://quintailidev.github.io/kaixin-birthday/images/dior5.jpg?v=3"
                 alt="太古汇的迪奥小姐"
@@ -758,30 +718,182 @@
 
   <script>
     /***********************
-     * A) 图片 skeleton：加载完成就去掉 shimmer
+     * A) 图片“稳态加载器”
+     * - 自动重试（最多3次）
+     * - 返回页面时自动拉起没加载成功的图
+     * - 失败显示“点我重试”
      ***********************/
-    function bindSkeletonForImages() {
+    (function setupRobustImageLoader() {
       const imgs = Array.from(document.querySelectorAll(".card-photo img"));
+      const MAX_RETRY = 3;
+
+      function withBuster(url) {
+        try {
+          const u = new URL(url, location.href);
+          u.searchParams.delete("r");
+          u.searchParams.set("r", Date.now().toString(36));
+          return u.toString();
+        } catch {
+          const sep = url.includes("?") ? "&" : "?";
+          return url + sep + "r=" + Date.now().toString(36);
+        }
+      }
+
+      function markLoaded(img) {
+        const box = img.closest(".card-photo");
+        if (!box) return;
+        box.classList.add("is-loaded");
+        box.classList.remove("is-failed");
+        img.dataset.failed = "0";
+      }
+
+      function markFailed(img) {
+        const box = img.closest(".card-photo");
+        if (!box) return;
+        box.classList.add("is-failed");
+        img.dataset.failed = "1";
+      }
+
+      function scheduleRetry(img, reason) {
+        const retry = parseInt(img.dataset.retry || "0", 10);
+        if (retry >= MAX_RETRY) {
+          markFailed(img);
+          return false;
+        }
+        img.dataset.retry = String(retry + 1);
+
+        // 指数退避 + 抖动：网络差时更稳
+        const delay = Math.min(7000, 650 * Math.pow(2, retry)) + Math.floor(Math.random() * 400);
+
+        // 如果当前在后台，就先标记，等回到前台再重试
+        if (document.visibilityState !== "visible") {
+          img.dataset.pendingRetry = "1";
+          return true;
+        }
+
+        setTimeout(() => {
+          if (document.visibilityState !== "visible") {
+            img.dataset.pendingRetry = "1";
+            return;
+          }
+          const base = img.dataset.src0 || img.currentSrc || img.src;
+          img.src = withBuster(base);
+        }, delay);
+
+        return true;
+      }
+
+      function ensureRetryButton(img) {
+        const box = img.closest(".card-photo");
+        if (!box) return;
+        const btn = box.querySelector(".img-retry button");
+        if (!btn) return;
+
+        btn.addEventListener("click", () => {
+          // 手动重试：把次数清零，立即拉起
+          img.dataset.retry = "0";
+          img.dataset.pendingRetry = "0";
+          box.classList.remove("is-failed");
+          const base = img.dataset.src0 || img.currentSrc || img.src;
+          img.src = withBuster(base);
+        });
+      }
+
+      // 1) 绑定 skeleton/重试逻辑
       imgs.forEach(img => {
+        img.dataset.src0 = img.getAttribute("src") || img.src;
+        img.dataset.retry = img.dataset.retry || "0";
+        img.dataset.failed = "0";
+        ensureRetryButton(img);
+
         const box = img.closest(".card-photo");
         if (!box) return;
 
-        const markLoaded = () => box.classList.add("is-loaded");
-        const markError = () => box.classList.add("is-loaded"); // 失败也不一直闪
+        const onLoad = () => markLoaded(img);
+        const onError = () => {
+          // 失败时：先自动重试，超过次数再显示按钮
+          const ok = scheduleRetry(img, "error");
+          if (!ok) markFailed(img);
+        };
 
-        if (img.complete && img.naturalWidth > 0) {
-          markLoaded();
-          return;
-        }
-        img.addEventListener("load", markLoaded, { once: true });
-        img.addEventListener("error", markError, { once: true });
+        img.addEventListener("load", onLoad);
+        img.addEventListener("error", onError);
+
+        // 已经缓存成功的直接标记
+        if (img.complete && img.naturalWidth > 0) markLoaded(img);
       });
-    }
-    bindSkeletonForImages();
+
+      // 2) 让 lazy 图更“主动”：接近视口时就强制 eager，并且如果失败了就补一刀
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          const img = e.target;
+          // 让浏览器别太佛系
+          try { img.loading = "eager"; } catch {}
+          // 如果之前失败/或挂起过，进视口时直接重试一次
+          if ((img.complete && img.naturalWidth === 0) || img.dataset.failed === "1") {
+            scheduleRetry(img, "inview");
+          }
+        });
+      }, { rootMargin: "900px 0px", threshold: 0.01 });
+
+      imgs.forEach(img => io.observe(img));
+
+      // 3) 返回页面时：把 pending 的、卡住的图重新拉起
+      function resumeImages() {
+        if (document.visibilityState !== "visible") return;
+
+        imgs.forEach(img => {
+          const stuck = (img.complete && img.naturalWidth === 0);
+          const pending = img.dataset.pendingRetry === "1";
+          const failed = img.dataset.failed === "1";
+
+          if (pending || stuck || failed) {
+            img.dataset.pendingRetry = "0";
+            scheduleRetry(img, "resume");
+          }
+        });
+      }
+
+      document.addEventListener("visibilitychange", resumeImages);
+      window.addEventListener("pageshow", resumeImages);
+      window.addEventListener("focus", resumeImages);
+      window.addEventListener("online", resumeImages);
+
+      // 4) 页面展示后，后台“温柔预热”剩余图片（并发2，不会压死移动网络）
+      function warmPreloadAll() {
+        if (document.visibilityState !== "visible") return;
+        const list = imgs.filter(img => !(img.complete && img.naturalWidth > 0));
+        if (!list.length) return;
+
+        let idx = 0;
+        let active = 0;
+        const CONCURRENCY = 2;
+
+        const next = () => {
+          while (active < CONCURRENCY && idx < list.length) {
+            const target = list[idx++];
+            const src = target.dataset.src0 || target.src;
+            active++;
+
+            const pre = new Image();
+            pre.decoding = "async";
+            pre.referrerPolicy = "no-referrer";
+            pre.onload = () => { active--; next(); };
+            pre.onerror = () => { active--; next(); };
+            pre.src = src;
+          }
+        };
+        next();
+      }
+
+      // 暴露给外部：首屏展示后再调用
+      window.__warmPreloadAllImages = warmPreloadAll;
+      window.__resumeImages = resumeImages;
+    })();
 
     /***********************
-     * B) 推荐版 Loader：
-     *    只等 data-critical="1" 的关键图加载完就展示页面
+     * B) Loader：只等 data-critical="1" 的关键图加载完就展示页面
      ***********************/
     async function waitCriticalImagesThenShow() {
       const overlay = document.getElementById("loaderOverlay");
@@ -830,7 +942,15 @@
         setTimeout(() => overlay.remove(), 450);
       }
 
-      // ✅ 页面真正展示后再启动爱心（用户能看到）
+      // ✅ 页面展示后：预热其余图片（你切走再回来也更容易加载完）
+      if (window.__warmPreloadAllImages) {
+        // 立刻预热一波
+        window.__warmPreloadAllImages();
+        // 再延迟补一波（给网络喘口气）
+        setTimeout(() => window.__warmPreloadAllImages && window.__warmPreloadAllImages(), 1800);
+      }
+
+      // ✅ 页面真正展示后再启动爱心/倒计时/交互
       initHeartsAndUI();
     }
 
@@ -838,7 +958,6 @@
      * 0) 爱心系统 + UI绑定（等首屏展示后再启动）
      ***********************/
     function initHeartsAndUI() {
-      // ===== 爱心系统 =====
       function createHeart() {
         const heart = document.createElement("div");
         heart.className = "heart";
@@ -852,10 +971,10 @@
       }
 
       let heartTimer = null;
-      const baseRate = 1200;      // 默认少量飘
-      const boostRate = 220;      // 加速飘
-      const boostMsClick = 3800;  // 点击按钮加速持续
-      const boostMsBirthday = 5000; // 生日当天加速持续
+      const baseRate = 1200;
+      const boostRate = 220;
+      const boostMsClick = 3800;
+      const boostMsBirthday = 5000;
       let boostTimeout = null;
 
       function startBaseHearts() {
@@ -879,21 +998,14 @@
         boostTimeout = setTimeout(() => setHeartRate(baseRate), durationMs);
       }
 
-      // 开场：先来几颗 + 持续少量飘
       for (let i = 0; i < 6; i++) setTimeout(createHeart, i * 180);
       startBaseHearts();
 
-      /***********************
-       * 1) 倒计时（1/10当天：显示祝福 + 停止计时；过了1/10：自动倒到下一年）
-       ***********************/
       function pad(n) { return String(n).padStart(2, '0'); }
       let countdownTimer = null;
       let birthdayHeartsTriggered = false;
 
-      function isJan10(d) {
-        return d.getMonth() === 0 && d.getDate() === 10;
-      }
-
+      function isJan10(d) { return d.getMonth() === 0 && d.getDate() === 10; }
       function getNextBirthday(now) {
         if (isJan10(now)) return new Date(now.getFullYear(), 0, 10, 0, 0, 0);
         let y = now.getFullYear();
@@ -902,7 +1014,7 @@
         return target;
       }
 
-      const DEBUG_DATE = null; // 测试用：new Date("2026-01-10T12:00:00")
+      const DEBUG_DATE = null;
       function getNow() { return DEBUG_DATE ? new Date(DEBUG_DATE) : new Date(); }
 
       function updateCountdown() {
@@ -941,9 +1053,6 @@
       updateCountdown();
       countdownTimer = setInterval(updateCountdown, 1000);
 
-      /***********************
-       * 2) 按钮交互
-       ***********************/
       document.getElementById("btnHearts")?.addEventListener("click", () => {
         burstHearts(22, 70);
         triggerHeartsBoost(boostMsClick);
@@ -953,9 +1062,6 @@
         document.getElementById("memories")?.scrollIntoView({ behavior: "smooth", block: "start" });
       });
 
-      /***********************
-       * 3) 卡片滚动出现
-       ***********************/
       const cards = Array.from(document.querySelectorAll(".reveal"));
       const io = new IntersectionObserver((entries) => {
         entries.forEach(e => {
@@ -963,6 +1069,14 @@
         });
       }, { threshold: 0.15 });
       cards.forEach(c => io.observe(c));
+
+      // ✅ 回到前台时顺手再唤醒一次图片（更稳）
+      document.addEventListener("visibilitychange", () => {
+        if (document.visibilityState === "visible" && window.__resumeImages) {
+          window.__resumeImages();
+          window.__warmPreloadAllImages && window.__warmPreloadAllImages();
+        }
+      });
     }
 
     // ✅ 开始：先等关键图，再展示页面，再启动爱心与交互
